@@ -1,6 +1,6 @@
 import serial
 
-class speedController():
+class SpeedController():
     def __init__(self) -> None:
       self.serial = ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
       self.serial.reset_input_buffer()
