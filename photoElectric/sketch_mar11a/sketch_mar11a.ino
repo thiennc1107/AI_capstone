@@ -1,24 +1,43 @@
-/*
-  Read digital pulse form photoelectric sensor/Infrared
-  by miliohm.com
-*/
 
-// digital pin 2 has a pushbutton attached to it. Give it a name:
-int photoElectric = 2;
+int photoElectric1 = 32;
+int photoElectric2 = 33;
 
+int brake1 = 30;
+int brake2 = 31;
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  // make the pushbutton's pin an input:
-  pinMode(photoElectric, INPUT);
+
+  pinMode(photoElectric1, INPUT);
+  pinMode(photoElectric2, INPUT);
+
+  pinMode(brake1, OUTPUT);
+  pinMode(brake2, OUTPUT);
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
+  StopEngine_PhotoElectric();
+}
+
+void StopEngine_PhotoElectric(){
   // read the input pin:
-  int sensorState = digitalRead(photoElectric);
+  int sensorState1 = digitalRead(photoElectric1);
+  int sensorState2 = digitalRead(photoElectric2);
+
   // print out the state of the button:
-  Serial.println(sensorState);
-  delay(1);        // delay in between reads for stability
+  //Serial.println(sensorState1);
+  //Serial.println(sensorState2);
+  
+  if (sensorState1 == 0 || sensorState2 == 0){
+    digitalWrite(brake1,HIGH);
+    digitalWrite(brake2,HIGH);    
+  } 
+  if (sensorState1 == 1 && sensorState2 == 1){
+    digitalWrite(brake1,LOW);
+    digitalWrite(brake2,LOW);  
+  } 
+
+  delay(1);           // delay in between reads for stability
 }

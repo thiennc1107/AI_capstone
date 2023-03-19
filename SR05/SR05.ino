@@ -1,4 +1,3 @@
-// bandardalat.com
 // Mega & IOE SR-05
  uint8_t trig1 = 22; // Digital        
  uint8_t echo1 = 15; //RX Serial3
@@ -8,6 +7,7 @@
  unsigned long duration2 = 0;
  long unsigned distance1 = 0;
  long unsigned distance2 = 0;
+
  uint8_t distanceValue[4] = {0,0,0,0};
  
  void setup()
@@ -15,13 +15,18 @@
    Serial.begin(9600);
    Serial3.begin(9600);
    Serial2.begin(9600);
+
    pinMode(trig1, OUTPUT);
    pinMode(trig2, OUTPUT);
-   pinMode(13, OUTPUT);
+
    digitalWrite(trig1, HIGH);
    digitalWrite(trig2, HIGH);
+
+   //echo receive serial data from sensor
    pinMode(echo1, INPUT);
    pinMode(echo2, INPUT);
+
+    pinMode(13, OUTPUT);
  }
  void loop()
  {
@@ -29,6 +34,7 @@
   //  delay(500);
    Distance2();
  }
+
  void Distance1(void)
  {
    while ( Serial3.read() >= 0 );        
@@ -78,8 +84,13 @@
      Serial.print("The distance 2 is : ");
      Serial.print(distance2);
      if (distance2 < 400) digitalWrite(13, 1);     
-     delay(1000);digitalWrite(13,0);
+     delay(1000);
+     digitalWrite(13,0);
 
      Serial.println(" mm");
    }
  }
+
+void StopMotorAtDistance(int StopDistance){
+  
+}
