@@ -10,6 +10,6 @@ class SpeedController():
     def set_speed(self, left: int, right: int):
        self.speed_left = left
        self.speed_right = right
-       speedArr = [left, right]
+       speedArr = [str(left), str(right)]
        speedStr = " ".join(speedArr)
        self.serial.write(bytes(speedStr,'utf-8'))
