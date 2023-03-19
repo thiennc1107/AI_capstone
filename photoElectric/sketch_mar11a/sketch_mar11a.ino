@@ -1,9 +1,9 @@
 
-int photoElectric1 = 32;
-int photoElectric2 = 33;
+int photoElectric1 = 23;
+int photoElectric2 = 25;
 
-int brake1 = 30;
-int brake2 = 31;
+int brake1 = 22;
+int brake2 = 24;
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -27,8 +27,8 @@ void StopEngine_PhotoElectric(){
   int sensorState2 = digitalRead(photoElectric2);
 
   // print out the state of the button:
-  //Serial.println(sensorState1);
-  //Serial.println(sensorState2);
+  Serial.println(sensorState1);
+  Serial.println(sensorState2);
   
   if (sensorState1 == 0 || sensorState2 == 0){
     digitalWrite(brake1,HIGH);

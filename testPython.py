@@ -1,17 +1,11 @@
-import serial
-import random
-import time
+import speedController as sp
 
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-ser.reset_input_buffer()
-ser.flush()
+controller = sp.SpeedController()
+controller.set_speed(0, 0)
 
-def write_read(x):
-    ser.write(bytes(x, 'utf-8'))
-    time.sleep(0.05)
-    data = ser.readline()
-    return data
 while True:
-    num = input("Enter a number: ") # Taking input from user
-    value = write_read(num)
-    print(value) # printing the value
+    data = input("input speed: ")
+    speedArr = data.split(' ')
+    speed1 = int(speedArr[0])
+    speed2 = int(speedArr[1])
+    controller.set_speed(speed1, speed2)
