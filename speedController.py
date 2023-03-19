@@ -1,6 +1,6 @@
 import serial
 
-class speedController():
+class SpeedController():
     def __init__(self) -> None:
       self.serial = ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
       self.serial.reset_input_buffer()
@@ -10,6 +10,6 @@ class speedController():
     def set_speed(self, left: int, right: int):
        self.speed_left = left
        self.speed_right = right
-       speedArr = [left, right]
+       speedArr = [str(left), str(right)]
        speedStr = " ".join(speedArr)
        self.serial.write(bytes(speedStr,'utf-8'))

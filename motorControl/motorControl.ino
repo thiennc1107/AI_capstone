@@ -21,13 +21,11 @@ Home
 
 #include <DigiPotX9Cxxx.h>
 // INC, UD, CS
-DigiPot pot1(6,5,7);
-DigiPot pot2(12,11,13);
+DigiPot pot1(12,11,13);
+DigiPot pot2(3,2,4);
 
 
 String data;
-
-
 
 void setup() {
   Serial.begin(9600);
@@ -42,9 +40,8 @@ void setup() {
 }
 
 void loop() {
-  // SpeedControl();
-  pot1.set(10*2.37);  
-  pot2.set(10); 
+  SpeedControl();
+
 }
 void SpeedControl(){
   //while(Serial.available()==0) {SensorStopEngine();} 
@@ -62,7 +59,7 @@ void SpeedControl(){
     Serial.println(speed1);
     Serial.println(speed2);
 
-    pot1.set(speed1*2.37);  
+    pot1.set(speed1);  
     pot2.set(speed2); 
   }
    
